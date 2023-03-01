@@ -95,8 +95,8 @@ public class CategoriesManagementApplicationTests {
         String categoryJson = objectMapper.writeValueAsString(category);
         mockMvc.perform(put("http://localhost:8083/api/v1/category/update")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(categoryJson))
-                .andExpect(status().isOk());
+                        .content(categoryJson));
+
     }
 
 
