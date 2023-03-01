@@ -60,5 +60,12 @@ pipeline {
                                           bat 'docker login -u Abdellaouioussama -p 29297229a'
                                                         }  }
 
+                     stage('Docker push') {
+
+                                         steps {
+                                              bat 'echo "Docker is pushing ...."'
+                                               	bat 'docker push  abdellaouioussama/productsmanagment-1.0.0:latest'
+                                                           }  }
+
 }
 }
