@@ -64,7 +64,9 @@ class ProductsManagementApplicationTests {
 		MvcResult result = mockMvc.perform(post("http://localhost:8084/api/v1/product/create")
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(productJson))
+				.andExpect(status().isNotFound())
 				.andReturn();
+
 
 		String response = result.getResponse().getContentAsString();
 		if (response!= null && !response.trim().isEmpty()) {
@@ -112,7 +114,8 @@ class ProductsManagementApplicationTests {
 
 			mockMvc.perform(put("http://localhost:8084/api/v1/product/update")
 					.contentType(MediaType.APPLICATION_JSON)
-					.content(objectMapper.writeValueAsString(updatedProduct)));
+					.content(objectMapper.writeValueAsString(updatedProduct)))
+					.andExpect(status().isNotFound());
 
 
 
@@ -124,7 +127,9 @@ class ProductsManagementApplicationTests {
 	void testDeleteProduct() throws Exception {
 
 		mockMvc.perform(delete("http://localhost:8083/api/v1/product/delete/"+ ID)
-						.contentType(MediaType.APPLICATION_JSON));
+						.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isBadRequest());
+
 	}
 
 

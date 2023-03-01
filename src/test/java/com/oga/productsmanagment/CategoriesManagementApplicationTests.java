@@ -62,7 +62,7 @@ public class CategoriesManagementApplicationTests {
         ObjectMapper objectMapper = new ObjectMapper();
         String categoryJson = objectMapper.writeValueAsString(category);
 
-        MvcResult result = mockMvc.perform(post("http://localhost:8083/api/v1/category/create")
+        MvcResult result = mockMvc.perform(post("http://localhost:8084/api/v1/category/create")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(categoryJson))
                 .andExpect(status().isOk())
@@ -77,7 +77,7 @@ public class CategoriesManagementApplicationTests {
     @Test
     @Order(1)
     void testGetByIdCategory() throws Exception {
-        mockMvc.perform(get("http://localhost:8083/api/v1/category/getById/"+ID)).andExpect(status().isOk());
+        mockMvc.perform(get("http://localhost:8084/api/v1/category/getById/"+ID)).andExpect(status().isOk());
     }
 
     @Order(2)
@@ -93,9 +93,11 @@ public class CategoriesManagementApplicationTests {
 
         ObjectMapper objectMapper = new ObjectMapper();
         String categoryJson = objectMapper.writeValueAsString(category);
-        mockMvc.perform(put("http://localhost:8083/api/v1/category/update")
+        mockMvc.perform(put("http://localhost:8084/api/v1/category/update")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(categoryJson));
+                        .content(categoryJson))
+                .andExpect(status().isNotFound());
+
 
     }
 
@@ -104,7 +106,7 @@ public class CategoriesManagementApplicationTests {
     @Order(3)
     void testDeleteCategory() throws Exception {
 
-        mockMvc.perform(delete("http://localhost:8083/api/v1/category/delete/"+ ID)
+        mockMvc.perform(delete("http://localhost:8084/api/v1/category/delete/"+ ID)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
