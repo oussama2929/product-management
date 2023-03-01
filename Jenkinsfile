@@ -57,7 +57,7 @@ pipeline {
 
                                        steps {
                                          bat 'echo "login Docker ...."'
-                                          bat 'docker login -u Abdellaouioussama -p 29297229a'
+                                          bat 'docker login -u abdellaouioussama -p 29297229a'
                                                         }  }
 
                      stage('Docker push') {
