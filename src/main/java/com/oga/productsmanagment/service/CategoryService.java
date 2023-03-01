@@ -12,9 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Service
 public class CategoryService {
@@ -29,7 +28,7 @@ public class CategoryService {
     }
     public List<CategoryDTO> getAll (){
         List<Category> categories = categoryRepository.findAll();
-        return categories.stream().map(CategoryMapper::entityToDto).collect(Collectors.toList());
+        return categories.stream().map(CategoryMapper::entityToDto).toList();
     }
 
 
@@ -50,13 +49,16 @@ public class CategoryService {
 
     public CategoryDTO update (CategoryDTO categoryDTO){
        var  category = CategoryMapper.dtoToEntity(categoryDTO);
-       if (category!= null) {
-           LocalDate date = LocalDate.now();
-           category.setDateDeModification(date);
+       if (category== null) {
 
+
+
+           throw new IllegalArgumentException("categorycannot be null");
        }
+        LocalDate date = LocalDate.now();
+        category.setDateDeModification(date);
 
-        return CategoryMapper.entityToDto(categoryRepository.saveAndFlush(category));
+        return CategoryMapper.entityToDto(categoryRepository.saveAndFlush( category));
     }
 
     public void delete(long id){
@@ -67,7 +69,7 @@ public class CategoryService {
     public List<ProductDTO> getAllListProductCategory(Long id){
         List<Product> products  = productRepository.findAllByCategoryId(id);
 
-        return products.stream().map(ProductMapper::entityToDto).collect(Collectors.toList());
+        return products.stream().map(ProductMapper::entityToDto).toList();
 
 
 }}

@@ -38,9 +38,9 @@ public class Product {
 
     @ManyToOne(fetch = FetchType.LAZY)
 
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "categoryId")
     private Category category;
     @Column(insertable=false, updatable=false)
-    private Long category_id;
+    private Long categoryId;
 
 }

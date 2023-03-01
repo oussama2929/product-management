@@ -1,10 +1,8 @@
 package com.oga.productsmanagment.service;
 
-import com.oga.productsmanagment.dtos.CategoryDTO;
 import com.oga.productsmanagment.dtos.ProductDTO;
 import com.oga.productsmanagment.entity.Category;
 import com.oga.productsmanagment.entity.Product;
-import com.oga.productsmanagment.mapper.CategoryMapper;
 import com.oga.productsmanagment.mapper.ProductMapper;
 import com.oga.productsmanagment.repository.CategoryRepository;
 import com.oga.productsmanagment.repository.ProductRepository;
@@ -13,8 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+
+
 
 @Service
 public class ProductService {
@@ -30,7 +28,7 @@ public class ProductService {
 
     public List<ProductDTO> getAll (){
         List<Product> products = productRepository.findAll();
-        return products.stream().map(ProductMapper::entityToDto).collect(Collectors.toList());
+        return products.stream().map(ProductMapper::entityToDto).toList();
     }
 
     public ProductDTO findById (Long id){
@@ -50,12 +48,13 @@ public class ProductService {
     }
 
 
-    public ProductDTO update (ProductDTO productDTO,Long id){
-        category = categoryRepository.findById(id).orElse(null);
+    public ProductDTO update (ProductDTO productDTO){
+        category = categoryRepository.findById(productDTO.getCategoryId()).orElse(null);
         Product product = ProductMapper.dtoToEntity(productDTO);
         LocalDate date = LocalDate.now();
         product.setDateDeModification(date);
         product.setCategory(category);
+        product.setCategoryId(product.getCategoryId());
         return ProductMapper.entityToDto(productRepository.save(product));
     }
 

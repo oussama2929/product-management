@@ -2,7 +2,6 @@ package com.oga.productsmanagment.controller;
 
 import com.oga.productsmanagment.dtos.CategoryDTO;
 import com.oga.productsmanagment.dtos.ProductDTO;
-import com.oga.productsmanagment.entity.Product;
 import com.oga.productsmanagment.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

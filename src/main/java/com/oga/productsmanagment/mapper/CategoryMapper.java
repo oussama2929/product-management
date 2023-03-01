@@ -3,9 +3,11 @@ package com.oga.productsmanagment.mapper;
 import com.oga.productsmanagment.dtos.CategoryDTO;
 import com.oga.productsmanagment.entity.Category;
 
-import java.util.stream.Collectors;
 
 public class CategoryMapper {
+    private CategoryMapper() {
+
+    }
 
     public static CategoryDTO entityToDto (Category category){
         CategoryDTO categoryDTO = new CategoryDTO();
@@ -15,9 +17,9 @@ public class CategoryMapper {
         categoryDTO.setName(category.getName());
         categoryDTO.setDateDeCreation(category.getDateDeCreation());
         categoryDTO.setDateDeModification(category.getDateDeModification());
-        if (category.getProducts() != null)
-            categoryDTO.setProducts(category.getProducts().stream().map(ProductMapper::entityToDto).collect(Collectors.toList()));
-
+        if (category.getProducts() != null) {
+            categoryDTO.setProducts(category.getProducts().stream().map(ProductMapper::entityToDto).toList());
+        }
         return categoryDTO;
     }
 
@@ -30,9 +32,9 @@ public class CategoryMapper {
         category.setName(categoryDTO.getName());
         category.setDateDeCreation(categoryDTO.getDateDeCreation());
         category.setDateDeModification(categoryDTO.getDateDeModification());
-        if (categoryDTO.getProducts() != null)
-        category.setProducts(categoryDTO.getProducts().stream().map(ProductMapper::dtoToEntity).collect(Collectors.toList()));
-
+        if (categoryDTO.getProducts() != null) {
+            category.setProducts(categoryDTO.getProducts().stream().map(ProductMapper::dtoToEntity).toList());
+        }
         return category;
     }
 }

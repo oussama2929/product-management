@@ -1,6 +1,6 @@
 package com.oga.productsmanagment.controller;
 
-import com.oga.productsmanagment.dtos.CategoryDTO;
+
 import com.oga.productsmanagment.dtos.ProductDTO;
 import com.oga.productsmanagment.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,13 +38,13 @@ public class ProductController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<ProductDTO> update(@RequestBody ProductDTO productDTO,@PathVariable Long id){
-        ProductDTO productDTO1 = productService.update(productDTO,id);
+    public ResponseEntity<ProductDTO> update(@RequestBody ProductDTO productDTO){
+        ProductDTO productDTO1 = productService.update(productDTO);
         return ResponseEntity.ok().body(productDTO1);
     }
 
     @DeleteMapping(path = "/delete/{id}")
-    public ResponseEntity deleteProduct(@PathVariable("id") Long id){
+    public ResponseEntity<Void> deleteProduct(@PathVariable("id") Long id){
         productService.delete(id);
         return ResponseEntity.noContent().build();
     }
