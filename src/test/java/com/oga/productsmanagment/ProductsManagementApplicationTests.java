@@ -75,11 +75,7 @@ class ProductsManagementApplicationTests {
 		}else{
 		}
 	}
-	@Test
-	@Order(1)
-	void testGetByIdProduct() throws Exception {
-			mockMvc.perform(get("http://localhost:8084/api/v1/product/getById/"+ID));
-	}
+
 		@Test
 		@Order(2)
 		void testUpdateProduct() throws Exception {

@@ -45,6 +45,20 @@ pipeline {
                                     }
 
                                   }
+                   stage('Build docker image'){
+                           steps{
+                                script{
+                                 bat 'docker build -t abdellaouioussama/productsmanagment-1.0.0:latest .'
+                                                          }
+                                                            }
+                                                           }
+
+                     stage('Docker login') {
+
+                                       steps {
+                                         bat 'echo "login Docker ...."'
+                                          bat 'docker login -u Abdellaouioussama -p 29297229a'
+                                                        }  }
 
 }
 }

@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.oga</groupId>
-	<artifactId>products-managment</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>productsmanagment</artifactId>
+	<version>1.0.0</version>
 	<name>products-managment</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
